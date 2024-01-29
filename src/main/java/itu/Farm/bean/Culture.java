@@ -1,0 +1,20 @@
+package itu.Farm.bean;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
+
+@Component
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Culture {
+    String id;
+    String nom;
+    double rendement;
+    double prix;
+    double duree;
+}
