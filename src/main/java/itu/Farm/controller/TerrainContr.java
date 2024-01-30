@@ -47,6 +47,6 @@ public class TerrainContr {
     public List<Terrain> terrainProprio(@PathVariable String id){ return serv.terrainProprio(id);}
 
     @GetMapping("{id}/proprio")
-    public String getProprio(@PathVariable String idTerrain){ return serv.getProprio(idTerrain);}
+    public String getProprio(@PathVariable String id){ return serv.getProprio(id);}
 
 }
