@@ -21,6 +21,9 @@ public class ParcelleServ {
     @Autowired
     CultureServ cultServ;
 
+    @Autowired
+    TerrainServ terrServ;
+
     public List<Parcelle> getAll(){
         List<Parcelle> table = new ArrayList<>();
 
@@ -130,5 +133,28 @@ public class ParcelleServ {
         }
     }
 
+    public Utilisateur getProprio(String idParcelle){
+        try {
+            Connection conn = co.connect();
+
+            String sql = "select idTerrain from parcelle where id='"+idParcelle+"'";
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            rs.next();
+            String idTerrain = rs.getString(1);
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+            return terrServ.getProprio(idTerrain);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
