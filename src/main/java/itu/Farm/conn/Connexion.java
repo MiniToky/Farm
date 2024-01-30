@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import lombok.Getter;
+
+@Getter
 @Service
 public class Connexion {
     // public Connection connect() {
@@ -24,13 +27,13 @@ public class Connexion {
     //     return conn;
     // }
 
-   @Value("jdbc:postgresql://monorail.proxy.rlwy.net:38988/postgres")
+   @Value("${spring.datasource.url}")
    private String url;
 
-   @Value("postgres")
+   @Value("${spring.datasource.username}")
    private String username;
 
-   @Value("abE4bf-gD3D5-2D56gCEdFga*FbeA-Be")
+   @Value("${spring.datasource.password}")
    private String password;
 
 //    @Value("${spring.datasource.driver-class-name}")
