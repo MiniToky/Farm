@@ -37,7 +37,4 @@ public class ParcelleContr {
     @GetMapping("/setcultures/{id}/{cult}")
     public void setCulture(@PathVariable String id, @PathVariable List<String> cult){ serv.setCulturePossible(id, cult);}
 
-    @GetMapping("{id}/proprio")
-    public Utilisateur getProprio(@PathVariable String id){ return serv.getProprio(id);}
-
 }
