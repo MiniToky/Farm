@@ -224,7 +224,7 @@ public class TerrainServ {
             stmt.close();
             conn.close();
 
-            return idUtilisateur;
+            return sql;
             // return userServ.findById(idUtilisateur);
 
         }catch (Exception e) {
