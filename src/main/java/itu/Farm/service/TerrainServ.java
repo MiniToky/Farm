@@ -208,6 +208,28 @@ public class TerrainServ {
         return table;
     }
 
+    public Utilisateur getProprio(String idTerrain){
+        try {
+            Connection conn = co.connect();
 
+            String sql = "select idUtilisateur from terrain where id='"+idTerrain+"'";
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+
+            rs.next();
+            String idUtilisateur = rs.getString(1);
+
+            rs.close();
+            stmt.close();
+            conn.close();
+
+            return userServ.findById(idUtilisateur);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }
