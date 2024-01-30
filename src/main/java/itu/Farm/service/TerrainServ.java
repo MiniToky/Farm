@@ -208,7 +208,7 @@ public class TerrainServ {
         return table;
     }
 
-    public Utilisateur getProprio(String idTerrain){
+    public String getProprio(String idTerrain){
         try {
             Connection conn = co.connect();
 
@@ -224,7 +224,8 @@ public class TerrainServ {
             stmt.close();
             conn.close();
 
-            return userServ.findById(idUtilisateur);
+            return idUtilisateur;
+            // return userServ.findById(idUtilisateur);
 
         }catch (Exception e) {
             e.printStackTrace();
