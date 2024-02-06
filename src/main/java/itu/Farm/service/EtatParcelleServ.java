@@ -42,9 +42,9 @@ public class EtatParcelleServ {
 //                ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
 //                rs1.next();
 //
-//                int etat = rs.getInt(3);
+                int etat = rs.getInt(3);
 //
-                int etat = 1;
+//                int etat = 1;
 //                if(rs1.getTimestamp(1).getMinutes() >= 10 && etat == 0){
 //                    etat = 1;
 //                    //this.updateEtat(rs.getString(1), rs.getTimestamp(4));
@@ -169,8 +169,8 @@ public class EtatParcelleServ {
 
             String sql = "insert into etat_parcelle values ('"+idParcelle+"','"+idCulture+"',0,now())";
 
-            //Statement s = conn.createStatement();
-//            int i = s.executeUpdate(sql);
+            Statement s = conn.createStatement();
+            int i = s.executeUpdate(sql);
 
             /*String sql1 = "select plantation from etat_parcelle where plantation=(select max(plantation) from etat_parcelle)";
             ResultSet r = s.executeQuery(sql1);
