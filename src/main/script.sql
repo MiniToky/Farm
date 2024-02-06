@@ -85,7 +85,7 @@ create table parcelle_culture_possible(
 );
 
 create table etat_parcelle(
-    idParcelle varchar(50) PRIMARY KEY,
+    idParcelle varchar(50),
     idCulture varchar(50),
     etat int, -- 0 en cours, 1 recoltable
     plantation timestamp,
