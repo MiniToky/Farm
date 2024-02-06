@@ -29,28 +29,11 @@ public class EtatParcelleServ {
 
             while (rs.next()) {
 
-                PreparedStatement pst1 = conn.prepareStatement("SELECT NOW() - ?");
-                PreparedStatement pst2 = conn.prepareStatement("select duree from culture where id=?");
-
-                pst1.setTimestamp(1, rs.getTimestamp(4));
-                pst2.setString(1, rs.getString(2));
-
-                ResultSet rs1 = pst1.executeQuery();
-                ResultSet rs2 = pst2.executeQuery();
-
-                rs1.next();
-                rs2.next();
-
-                int etat = rs.getInt(3);
-
-                double ecoulee = rs1.getTimestamp(1).getTime() / (60*1000);
-                double duree = rs2.getDouble(1);
-
-                if(ecoulee >= duree && etat == 0){
-                    etat = 1;
+                if(this.checkUpdate(rs.getTimestamp(4), rs.getString(2), rs.getInt(3))){
                     this.updateEtat(rs.getString(1), rs.getTimestamp(4));
                 }
-                EtatParcelle temp = new EtatParcelle(rs.getString(1),rs.getString(2),etat,rs.getTimestamp(4));
+
+                EtatParcelle temp = new EtatParcelle(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getTimestamp(4));
                 table.add(temp);
             }
 
@@ -74,6 +57,37 @@ public class EtatParcelleServ {
         return null;
     }
 
+    public boolean checkUpdate(Timestamp plantation, String idCulture, int etat){
+        try{
+            Connection conn = co.connect();
+
+            PreparedStatement pst1 = conn.prepareStatement("SELECT NOW() - ?");
+            PreparedStatement pst2 = conn.prepareStatement("select duree from culture where id=?");
+
+            pst1.setTimestamp(1, plantation);
+            pst2.setString(1, idCulture);
+
+            ResultSet rs1 = pst1.executeQuery();
+            ResultSet rs2 = pst2.executeQuery();
+
+            rs1.next();
+            rs2.next();
+
+            double ecoulee = rs1.getTimestamp(1).getTime() / (60*1000);
+            double duree = rs2.getDouble(1);
+
+            boolean update = false;
+
+            if(ecoulee >= duree && etat == 0){
+                update = true;
+            }
+            return update;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public void updateEtat(String idParcelle, Timestamp plantation){
         try {
             Connection conn = co.connect();
@@ -91,54 +105,13 @@ public class EtatParcelleServ {
         }
     }
 
-    public List<EtatParcelle> getFinished(){
+    public List<EtatParcelle> getByEtat(int etat){
         List<EtatParcelle> table = new ArrayList<>();
-
-        try {
-            Connection conn = co.connect();
-
-            String sql = "select * from etat_parcelle where etat > 0";
-
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                EtatParcelle temp = new EtatParcelle(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getTimestamp(4));
-                table.add(temp);
+        List<EtatParcelle> all = this.getAll();
+        for (EtatParcelle e: all){
+            if(e.getEtat() == etat){
+                table.add(e);
             }
-
-            rs.close();
-            stmt.close();
-            conn.close();
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-        return table;
-    }
-
-    public List<EtatParcelle> getEnCours(){
-        List<EtatParcelle> table = new ArrayList<>();
-
-        try {
-            Connection conn = co.connect();
-
-            String sql = "select * from etat_parcelle where etat = 0";
-
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                EtatParcelle temp = new EtatParcelle(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getTimestamp(4));
-                table.add(temp);
-            }
-
-            rs.close();
-            stmt.close();
-            conn.close();
-
-        }catch (Exception e) {
-            e.printStackTrace();
         }
         return table;
     }

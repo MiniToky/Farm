@@ -21,10 +21,10 @@ public class EtatParcelleContr {
     public EtatParcelle find(@PathVariable String idParcelle, @RequestParam String date){ return serv.find(idParcelle, date);}
 
     @GetMapping("/finished")
-    public List<EtatParcelle> getFinished(){return serv.getFinished();}
+    public List<EtatParcelle> getFinished(){return serv.getByEtat(1);}
 
     @GetMapping("/loading")
-    public List<EtatParcelle> getLoading(){return serv.getEnCours();}
+    public List<EtatParcelle> getLoading(){return serv.getByEtat(0);}
 
 //    @GetMapping("/details/{idParcelle}/{plantation}")
 //    public List<Double> getDetails(@PathVariable String idParcelle, @PathVariable Timestamp plantation){return serv.getDetails(idParcelle, plantation);}
