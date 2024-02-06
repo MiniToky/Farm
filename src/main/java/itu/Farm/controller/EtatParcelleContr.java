@@ -30,5 +30,5 @@ public class EtatParcelleContr {
 //    public List<Double> getDetails(@PathVariable String idParcelle, @PathVariable Timestamp plantation){return serv.getDetails(idParcelle, plantation);}
 
     @GetMapping("/new/{idParcelle}/{idCulture}")
-    public String newEtat(@PathVariable String idParcelle, @PathVariable String idCulture){ return serv.cultiver(idParcelle, idCulture);}
+    public EtatParcelle newEtat(@PathVariable String idParcelle, @PathVariable String idCulture){ return serv.cultiver(idParcelle, idCulture);}
 }

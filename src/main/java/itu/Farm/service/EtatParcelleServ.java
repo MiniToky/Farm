@@ -163,30 +163,29 @@ public class EtatParcelleServ {
 //        return resultat;
 //    }
 
-    public String cultiver(String idParcelle, String idCulture){
+    public EtatParcelle cultiver(String idParcelle, String idCulture){
         try{
-//            Connection conn = co.connect();
-//
+            Connection conn = co.connect();
+
             String sql = "insert into etat_parcelle values ('"+idParcelle+"','"+idCulture+"',0,now())";
 
-//            Statement s = conn.createStatement();
-//            int i = s.executeUpdate(sql);
+            Statement s = conn.createStatement();
+            int i = s.executeUpdate(sql);
 
-            /*String sql1 = "select plantation from etat_parcelle where plantation=(select max(plantation) from etat_parcelle)";
+            String sql1 = "select plantation from etat_parcelle where plantation=(select max(plantation) from etat_parcelle)";
             ResultSet r = s.executeQuery(sql1);
             r.next();
             Timestamp time = r.getTimestamp(1);
 
-            r.close();*/
-            //s.close();
-            //conn.close();
+            r.close();
+            s.close();
+            conn.close();
 
-            //return this.find(idParcelle, time);
-            return sql;
+            return this.find(idParcelle, time);
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return "Null";
+        return null;
     }
 
 }
