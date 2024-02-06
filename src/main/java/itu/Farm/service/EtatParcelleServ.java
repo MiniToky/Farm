@@ -47,6 +47,9 @@ public class EtatParcelleServ {
                 ResultSet rs1 = pst1.executeQuery();
                 ResultSet rs2 = pst2.executeQuery();
 
+                rs1.next();
+                rs2.next();
+
                 int etat = rs.getInt(3);
 
 //                ResultSet rs2 = stmt.executeQuery("select duree from culture where id='"+rs.getString(2)+"'");
