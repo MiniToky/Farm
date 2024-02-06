@@ -16,12 +16,6 @@ public class EtatParcelleServ {
     @Autowired
     Connexion co;
 
-//    @Autowired
-//    CultureServ cultServ;
-//
-//    @Autowired
-//    ParcelleServ parcServ;
-
     public List<EtatParcelle> getAll(){
         List<EtatParcelle> table = new ArrayList<>();
 
