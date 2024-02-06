@@ -39,8 +39,8 @@ public class EtatParcelleServ {
             while (rs.next()) {
                 //Culture c = cultServ.find(rs.getString(2));
 
-                ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
-                rs1.next();
+                //ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
+                //rs1.next();
 
                 int etat = rs.getInt(3);
 
