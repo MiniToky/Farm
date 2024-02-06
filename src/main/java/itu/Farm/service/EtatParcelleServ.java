@@ -116,22 +116,41 @@ public class EtatParcelleServ {
         return table;
     }
 
-//    public List<Double> getDetails(String idParcelle, Timestamp plantation){
-//        List<Double> resultat = new ArrayList<>();
-//
-//        EtatParcelle ep = this.find(idParcelle, plantation);
-//        Culture c = cultServ.find(ep.getIdCulture());
-//        Parcelle p = parcServ.find(ep.getIdParcelle());
-//
-//        double surface = p.getLargeur() * p.getLongueur();
-//        double rendementTotal = surface * c.getRendement();
-//        double prixTotal = rendementTotal * c.getPrix();
-//
-//        resultat.add(rendementTotal);
-//        resultat.add(prixTotal);
-//
-//        return resultat;
-//    }
+    public List<Double> getDetails(String idParcelle, String plantation){
+        List<Double> resultat = new ArrayList<>();
+
+        EtatParcelle ep = this.find(idParcelle, plantation);
+
+        try{
+            Connection conn = co.connect();
+
+            PreparedStatement pst1 = conn.prepareStatement("SELECT rendement,prix from culture where id=?");
+            PreparedStatement pst2 = conn.prepareStatement("select largeur*longueur from parcelle where id=?");
+
+            pst1.setString(1, ep.getIdCulture());
+            pst2.setString(1, ep.getIdParcelle());
+
+            ResultSet rs1 = pst1.executeQuery();
+            ResultSet rs2 = pst2.executeQuery();
+
+            rs1.next();
+            rs2.next();
+
+            double rendement = rs1.getDouble(1);
+            double surface = rs2.getDouble(1);
+
+            double rendementTotal = surface * rendement;
+            double prixTotal = rendementTotal * rs1.getDouble(2);
+
+            resultat.add(rendementTotal);
+            resultat.add(prixTotal);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return resultat;
+    }
 
     public EtatParcelle cultiver(String idParcelle, String idCulture){
         try{

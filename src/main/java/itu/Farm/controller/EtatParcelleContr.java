@@ -26,8 +26,8 @@ public class EtatParcelleContr {
     @GetMapping("/loading")
     public List<EtatParcelle> getLoading(){return serv.getByEtat(0);}
 
-//    @GetMapping("/details/{idParcelle}/{plantation}")
-//    public List<Double> getDetails(@PathVariable String idParcelle, @PathVariable Timestamp plantation){return serv.getDetails(idParcelle, plantation);}
+    @GetMapping("/details/{idParcelle}")
+    public List<Double> getDetails(@PathVariable String idParcelle, @RequestParam String date){return serv.getDetails(idParcelle, date);}
 
     @GetMapping("/new/{idParcelle}/{idCulture}")
     public EtatParcelle newEtat(@PathVariable String idParcelle, @PathVariable String idCulture){ return serv.cultiver(idParcelle, idCulture);}
