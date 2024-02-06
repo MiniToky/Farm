@@ -3,10 +3,7 @@ package itu.Farm.controller;
 import itu.Farm.bean.EtatParcelle;
 import itu.Farm.service.EtatParcelleServ;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -19,6 +16,9 @@ public class EtatParcelleContr {
 
     @GetMapping("/all")
     public List<EtatParcelle> getAll(){return serv.getAll();}
+
+    @GetMapping("{idParcelle}")
+    public EtatParcelle find(@PathVariable String idParcelle, @RequestParam Timestamp date){ return serv.find(idParcelle, date);}
 
     @GetMapping("/finished")
     public List<EtatParcelle> getFinished(){return serv.getFinished();}

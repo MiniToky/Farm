@@ -46,7 +46,7 @@ public class EtatParcelleServ {
                 int duree = (int) Math.floor(rs2.getDouble(1));
                 if(rs1.getTimestamp(1).getMinutes() >= duree && etat == 0){
                     etat = 1;
-                    this.updateEtat(rs.getString(1), rs.getTimestamp(4));
+                    //this.updateEtat(rs.getString(1), rs.getTimestamp(4));
                 }
                 EtatParcelle temp = new EtatParcelle(rs.getString(1),rs.getString(2),etat,rs.getTimestamp(4));
                 table.add(temp);
@@ -62,14 +62,10 @@ public class EtatParcelleServ {
         return table;
     }
 
-        public EtatParcelle find(String idParcelle, Timestamp pl){
+    public EtatParcelle find(String idParcelle, Timestamp pl){
         List<EtatParcelle> cu = this.getAll();
         for (EtatParcelle l: cu){
-            int minute = l.getPlantation().getMinutes();
-            int minutePl = pl.getMinutes();
-            int diff = minutePl - minute;
-
-            if(l.getIdParcelle().equalsIgnoreCase(idParcelle) && Math.abs(diff) <= 2){
+            if(l.getIdParcelle().equalsIgnoreCase(idParcelle) && l.getPlantation()==pl){
                 return l;
             }
         }
