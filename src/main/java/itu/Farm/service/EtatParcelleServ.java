@@ -21,9 +21,9 @@ public class EtatParcelleServ {
 
 //    @Autowired
 //    CultureServ cultServ;
-
-    @Autowired
-    ParcelleServ parcServ;
+//
+//    @Autowired
+//    ParcelleServ parcServ;
 
     public List<EtatParcelle> getAll(){
         List<EtatParcelle> table = new ArrayList<>();
@@ -182,7 +182,7 @@ public class EtatParcelleServ {
             //conn.close();
 
             //return this.find(idParcelle, time);
-            return sql+ " Mety be";
+            return sql;
         }catch (Exception e) {
             e.printStackTrace();
         }
