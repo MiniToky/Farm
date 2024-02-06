@@ -46,7 +46,7 @@ public class EtatParcelleServ {
 
                 if(rs1.getTimestamp(1).getMinutes() >= c.getDuree() && etat == 0){
                     etat = 1;
-                    this.updateEtat(rs.getString(1), rs.getTimestamp(4));
+                    //this.updateEtat(rs.getString(1), rs.getTimestamp(4));
                 }
                 EtatParcelle temp = new EtatParcelle(rs.getString(1),rs.getString(2),etat,rs.getTimestamp(4));
                 table.add(temp);
