@@ -19,8 +19,8 @@ public class EtatParcelleServ {
     @Autowired
     Connexion co;
 
-    @Autowired
-    CultureServ cultServ;
+//    @Autowired
+//    CultureServ cultServ;
 
     @Autowired
     ParcelleServ parcServ;
@@ -37,14 +37,14 @@ public class EtatParcelleServ {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Culture c = cultServ.find(rs.getString(2));
+                //Culture c = cultServ.find(rs.getString(2));
 
                 ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
                 rs1.next();
 
                 int etat = rs.getInt(3);
 
-                if(rs1.getTimestamp(1).getMinutes() >= c.getDuree() && etat == 0){
+                if(rs1.getTimestamp(1).getMinutes() >= 10 && etat == 0){
                     etat = 1;
                     //this.updateEtat(rs.getString(1), rs.getTimestamp(4));
                 }
