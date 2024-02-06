@@ -38,6 +38,12 @@ public class EtatParcelleServ {
                 //ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
 //                rs1.next();
 
+                PreparedStatement pst1 = conn.prepareStatement("SELECT NOW() - ?");
+                PreparedStatement pst2 = conn.prepareStatement("select duree from culture where id=?");
+
+                pst1.setTimestamp(1, rs.getTimestamp(4));
+                pst2.setString(1, rs.getString(2));
+
                 int etat = rs.getInt(3);
 
 //                ResultSet rs2 = stmt.executeQuery("select duree from culture where id='"+rs.getString(2)+"'");
