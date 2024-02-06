@@ -165,7 +165,7 @@ public class EtatParcelleServ {
 
     public String cultiver(String idParcelle, String idCulture){
         try{
-            //Connection conn = co.connect();
+            Connection conn = co.connect();
 
             String sql = "insert into etat_parcelle values ('"+idParcelle+"','"+idCulture+"',0,now())";
 
@@ -182,7 +182,7 @@ public class EtatParcelleServ {
             //conn.close();
 
             //return this.find(idParcelle, time);
-            return sql+ " Mety bee";
+            return sql+ " Mety beee";
         }catch (Exception e) {
             e.printStackTrace();
         }
