@@ -42,8 +42,9 @@ public class EtatParcelleServ {
 //                ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
 //                rs1.next();
 //
-                int etat = rs.getInt(3);
+//                int etat = rs.getInt(3);
 //
+                int etat = 1;
 //                if(rs1.getTimestamp(1).getMinutes() >= 10 && etat == 0){
 //                    etat = 1;
 //                    //this.updateEtat(rs.getString(1), rs.getTimestamp(4));
@@ -181,7 +182,7 @@ public class EtatParcelleServ {
             //conn.close();
 
             //return this.find(idParcelle, time);
-            return sql+ " Mety be";
+            return sql+ " Mety bee";
         }catch (Exception e) {
             e.printStackTrace();
         }
