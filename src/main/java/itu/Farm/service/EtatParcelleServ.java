@@ -185,7 +185,7 @@ public class EtatParcelleServ {
         }catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return "Null";
     }
 
 }
