@@ -19,8 +19,8 @@ public class EtatParcelleServ {
     @Autowired
     Connexion co;
 
-//    @Autowired
-//    CultureServ cultServ;
+    @Autowired
+    CultureServ cultServ;
 
     @Autowired
     ParcelleServ parcServ;
@@ -37,17 +37,17 @@ public class EtatParcelleServ {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                //Culture c = cultServ.find(rs.getString(2));
+                Culture c = cultServ.find(rs.getString(2));
 
-                //ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
-                //rs1.next();
+                ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
+                rs1.next();
 
                 int etat = rs.getInt(3);
 
-//                if(rs1.getTimestamp(1).getMinutes() >= c.getDuree() && etat == 0){
-//                    etat = 1;
-//                    this.updateEtat(rs.getString(1), rs.getTimestamp(4));
-//                }
+                if(rs1.getTimestamp(1).getMinutes() >= c.getDuree() && etat == 0){
+                    etat = 1;
+                    this.updateEtat(rs.getString(1), rs.getTimestamp(4));
+                }
                 EtatParcelle temp = new EtatParcelle(rs.getString(1),rs.getString(2),etat,rs.getTimestamp(4));
                 table.add(temp);
             }
@@ -80,7 +80,7 @@ public class EtatParcelleServ {
         try {
             Connection conn = co.connect();
 
-            String sql = "update etat_parcelle set etat=1 where idParcelle='" + idParcelle + "' and plantation=" + plantation;
+            String sql = "update etat_parcelle set etat=1 where idParcelle='" + idParcelle + "' and plantation='" + plantation + "'";
 
             Statement stmt = conn.createStatement();
             int i = stmt.executeUpdate(sql);
