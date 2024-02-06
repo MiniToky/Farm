@@ -40,14 +40,14 @@ public class EtatParcelleServ {
 
                 int etat = rs.getInt(3);
 
-                ResultSet rs2 = stmt.executeQuery("select duree from culture where id='"+rs.getString(2)+"'");
-                rs2.next();
-
-                int duree = (int) Math.floor(rs2.getDouble(1));
-                if(rs1.getTimestamp(1).getMinutes() >= duree && etat == 0){
-                    etat = 1;
-                    //this.updateEtat(rs.getString(1), rs.getTimestamp(4));
-                }
+//                ResultSet rs2 = stmt.executeQuery("select duree from culture where id='"+rs.getString(2)+"'");
+//                rs2.next();
+//
+//                int duree = (int) Math.floor(rs2.getDouble(1));
+//                if(rs1.getTimestamp(1).getMinutes() >= duree && etat == 0){
+//                    etat = 1;
+//                    //this.updateEtat(rs.getString(1), rs.getTimestamp(4));
+//                }
                 EtatParcelle temp = new EtatParcelle(rs.getString(1),rs.getString(2),etat,rs.getTimestamp(4));
                 table.add(temp);
             }
