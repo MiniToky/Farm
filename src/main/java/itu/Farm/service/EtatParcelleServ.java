@@ -169,7 +169,7 @@ public class EtatParcelleServ {
             String sql = "insert into etat_parcelle values ('"+idParcelle+"','"+idCulture+"',0,now())";
 
             //Statement s = conn.createStatement();
-            int i = s.executeUpdate(sql);
+//            int i = s.executeUpdate(sql);
 
             /*String sql1 = "select plantation from etat_parcelle where plantation=(select max(plantation) from etat_parcelle)";
             ResultSet r = s.executeQuery(sql1);
