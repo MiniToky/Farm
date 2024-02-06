@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @RestController
-@RequestMapping("/etqt")
+@RequestMapping("/etat")
 public class EtatParcelleContr {
     @Autowired
     EtatParcelleServ serv;
