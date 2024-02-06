@@ -49,8 +49,10 @@ public class EtatParcelleServ {
 
                 int etat = rs.getInt(3);
 
-                int duree = (int) Math.floor(rs2.getDouble(1));
-                if(rs1.getTimestamp(1).toLocalDateTime().getMinute() >= duree && etat == 0){
+                double ecoulee = rs1.getTimestamp(1).getTime() / (60*1000);
+                double duree = rs2.getDouble(1);
+
+                if(ecoulee >= duree && etat == 0){
                     etat = 1;
                     this.updateEtat(rs.getString(1), rs.getTimestamp(4));
                 }
