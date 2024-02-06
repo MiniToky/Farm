@@ -165,12 +165,12 @@ public class EtatParcelleServ {
 
     public String cultiver(String idParcelle, String idCulture){
         try{
-            Connection conn = co.connect();
-
+//            Connection conn = co.connect();
+//
             String sql = "insert into etat_parcelle values ('"+idParcelle+"','"+idCulture+"',0,now())";
 
-            Statement s = conn.createStatement();
-            int i = s.executeUpdate(sql);
+//            Statement s = conn.createStatement();
+//            int i = s.executeUpdate(sql);
 
             /*String sql1 = "select plantation from etat_parcelle where plantation=(select max(plantation) from etat_parcelle)";
             ResultSet r = s.executeQuery(sql1);
@@ -182,7 +182,7 @@ public class EtatParcelleServ {
             //conn.close();
 
             //return this.find(idParcelle, time);
-            return sql+ " Mety beee";
+            return sql+ " Mety be";
         }catch (Exception e) {
             e.printStackTrace();
         }
