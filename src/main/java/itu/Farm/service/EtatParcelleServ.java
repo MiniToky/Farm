@@ -167,7 +167,7 @@ public class EtatParcelleServ {
             Connection conn = co.connect();
             Statement s = conn.createStatement();
 
-            String sql = "insert into etat_parcelle values('"+idParcelle+"','"+idCulture+"',0,now())";
+            String sql = "insert into etat_parcelle values ('"+idParcelle+"','"+idCulture+"',0,now())";
 
             int i = s.executeUpdate(sql);
 
