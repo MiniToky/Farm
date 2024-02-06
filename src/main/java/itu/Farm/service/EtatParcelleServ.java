@@ -36,7 +36,7 @@ public class EtatParcelleServ {
             while (rs.next()) {
 
                 ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
-                rs1.next();
+//                rs1.next();
 
                 int etat = rs.getInt(3);
 
