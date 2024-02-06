@@ -18,7 +18,7 @@ public class EtatParcelleContr {
     public List<EtatParcelle> getAll(){return serv.getAll();}
 
     @GetMapping("{idParcelle}")
-    public EtatParcelle find(@PathVariable String idParcelle, @RequestParam Timestamp date){ return serv.find(idParcelle, date);}
+    public EtatParcelle find(@PathVariable String idParcelle, @RequestParam String date){ return serv.find(idParcelle, date);}
 
     @GetMapping("/finished")
     public List<EtatParcelle> getFinished(){return serv.getFinished();}

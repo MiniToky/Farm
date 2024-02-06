@@ -62,10 +62,10 @@ public class EtatParcelleServ {
         return table;
     }
 
-    public EtatParcelle find(String idParcelle, Timestamp pl){
+    public EtatParcelle find(String idParcelle, String pl){
         List<EtatParcelle> cu = this.getAll();
         for (EtatParcelle l: cu){
-            if(l.getIdParcelle().equalsIgnoreCase(idParcelle) && l.getPlantation().equals(pl)){
+            if(l.getIdParcelle().equalsIgnoreCase(idParcelle) && l.getPlantation().toString().equals(pl)){
                 return l;
             }
         }
@@ -176,7 +176,7 @@ public class EtatParcelleServ {
             s.close();
             conn.close();
 
-            return this.find(idParcelle, time);
+            return this.find(idParcelle, time.toString());
         }catch (Exception e) {
             e.printStackTrace();
         }
