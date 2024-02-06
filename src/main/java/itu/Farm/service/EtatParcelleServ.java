@@ -19,8 +19,8 @@ public class EtatParcelleServ {
     @Autowired
     Connexion co;
 
-    @Autowired
-    CultureServ cultServ;
+//    @Autowired
+//    CultureServ cultServ;
 
     @Autowired
     ParcelleServ parcServ;
@@ -37,17 +37,17 @@ public class EtatParcelleServ {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Culture c = cultServ.find(rs.getString(2));
+                //Culture c = cultServ.find(rs.getString(2));
 
                 ResultSet rs1 = stmt.executeQuery("select now() - '"+rs.getTimestamp(4)+"'");
                 rs1.next();
 
                 int etat = rs.getInt(3);
 
-                if(rs1.getTimestamp(1).getMinutes() >= c.getDuree() && etat == 0){
-                    etat = 1;
-                    this.updateEtat(rs.getString(1), rs.getTimestamp(4));
-                }
+//                if(rs1.getTimestamp(1).getMinutes() >= c.getDuree() && etat == 0){
+//                    etat = 1;
+//                    this.updateEtat(rs.getString(1), rs.getTimestamp(4));
+//                }
                 EtatParcelle temp = new EtatParcelle(rs.getString(1),rs.getString(2),etat,rs.getTimestamp(4));
                 table.add(temp);
             }
@@ -145,22 +145,22 @@ public class EtatParcelleServ {
         return table;
     }
 
-    public List<Double> getDetails(String idParcelle, Timestamp plantation){
-        List<Double> resultat = new ArrayList<>();
-
-        EtatParcelle ep = this.find(idParcelle, plantation);
-        Culture c = cultServ.find(ep.getIdCulture());
-        Parcelle p = parcServ.find(ep.getIdParcelle());
-
-        double surface = p.getLargeur() * p.getLongueur();
-        double rendementTotal = surface * c.getRendement();
-        double prixTotal = rendementTotal * c.getPrix();
-
-        resultat.add(rendementTotal);
-        resultat.add(prixTotal);
-
-        return resultat;
-    }
+//    public List<Double> getDetails(String idParcelle, Timestamp plantation){
+//        List<Double> resultat = new ArrayList<>();
+//
+//        EtatParcelle ep = this.find(idParcelle, plantation);
+//        Culture c = cultServ.find(ep.getIdCulture());
+//        Parcelle p = parcServ.find(ep.getIdParcelle());
+//
+//        double surface = p.getLargeur() * p.getLongueur();
+//        double rendementTotal = surface * c.getRendement();
+//        double prixTotal = rendementTotal * c.getPrix();
+//
+//        resultat.add(rendementTotal);
+//        resultat.add(prixTotal);
+//
+//        return resultat;
+//    }
 
     public String cultiver(String idParcelle, String idCulture){
         try{
