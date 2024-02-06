@@ -65,7 +65,7 @@ public class EtatParcelleServ {
     public EtatParcelle find(String idParcelle, Timestamp pl){
         List<EtatParcelle> cu = this.getAll();
         for (EtatParcelle l: cu){
-            if(l.getIdParcelle().equalsIgnoreCase(idParcelle) && l.getPlantation()==pl){
+            if(l.getIdParcelle().equalsIgnoreCase(idParcelle) && l.getPlantation().equals(pl)){
                 return l;
             }
         }
