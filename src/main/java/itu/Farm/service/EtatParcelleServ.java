@@ -47,6 +47,29 @@ public class EtatParcelleServ {
         return table;
     }
 
+    public List<EtatParcelle> histoParcelle(String idParcelle){
+        List<EtatParcelle> cu = this.getAll();
+        List<EtatParcelle> table = new ArrayList<>();
+        for (EtatParcelle l: cu){
+            if(l.getIdParcelle().equalsIgnoreCase(idParcelle)){
+                table.add(l);
+            }
+        }
+        return table;
+    }
+
+    public EtatParcelle lastEtatParcelle(String idParcelle){
+        List<EtatParcelle> liste = this.histoParcelle(idParcelle);
+        EtatParcelle last = liste.get(0);
+        for (EtatParcelle l: liste){
+            if(l.getPlantation().compareTo(last.getPlantation()) > 0){
+                last = l;
+            }
+        }
+
+        return last;
+    }
+
     public EtatParcelle find(String idParcelle, String pl){
         List<EtatParcelle> cu = this.getAll();
         for (EtatParcelle l: cu){

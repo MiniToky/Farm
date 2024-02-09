@@ -26,6 +26,12 @@ public class EtatParcelleContr {
     @GetMapping("/loading")
     public List<EtatParcelle> getLoading(){return serv.getByEtat(0);}
 
+    @GetMapping("{idParcelle}/histo")
+    public List<EtatParcelle> getHistoParcelle(@PathVariable String idParcelle){return serv.histoParcelle(idParcelle);}
+
+    @GetMapping("{idParcelle}/lastEtat")
+    public EtatParcelle getLastEtatParcelle(@PathVariable String idParcelle){return serv.lastEtatParcelle(idParcelle);}
+
     @GetMapping("/details/{idParcelle}")
     public List<Double> getDetails(@PathVariable String idParcelle, @RequestParam String date){return serv.getDetails(idParcelle, date);}
 
